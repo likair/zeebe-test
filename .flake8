@@ -1,0 +1,32 @@
+[flake8]
+# Define the maximum line length
+max-line-length = 88
+
+# Define the complexity. It's a good practice to keep this value low.
+max-complexity = 10
+
+# List of errors and warnings to ignore
+ignore =
+    # E203: whitespace before ':'
+    E203,
+    # W503: line break before binary operator
+    W503
+
+# Exclude some directories
+exclude =
+    .git,
+    __pycache__,
+    build,
+    dist
+
+# Enable specific plugins, if you've installed any. For example, if you've
+# installed 'flake8-bugbear', you can enable some of its checks:
+select =
+    B301,
+    B302,
+    B303
+
+# Include files that you want flake8 to check, even if they are not .py files
+filename =
+    *.py,
+    *.pyx

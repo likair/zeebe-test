@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.8.12 on darwin)" generated="20230913 21:44:07.051" rpa="false" schemaversion="4">
+<suite id="s1" name="Tests" source="/Users/likai/Downloads/zeebe-test/tests">
+<suite id="s1-s1" name="Test Zeebe Gateway Health" source="/Users/likai/Downloads/zeebe-test/tests/test_zeebe_gateway_health.robot">
+<test id="s1-s1-t1" name="Zeebe gateway status should be healthy" line="13">
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>30</arg>
+<arg>1s</arg>
+<arg>Check Gateway Status Is Healthy</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<msg timestamp="20230913 21:44:07.274" level="TRACE">Arguments: [ '30' | '1s' | 'Check Gateway Status Is Healthy' ]</msg>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:07.275" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:07.275" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:07.281" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:07.285" level="FAIL">ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))</msg>
+<msg timestamp="20230913 21:44:07.287" level="DEBUG">Traceback (most recent call last):
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connection.py", line 461, in getresponse
+    httplib_response = super().getresponse()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 1348, in getresponse
+    response.begin()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 285, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 470, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connection.py", line 461, in getresponse
+    httplib_response = super().getresponse()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 1348, in getresponse
+    response.begin()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 285, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/likai/Downloads/zeebe-test/libraries/zeebe/GatewayLibrary.py", line 30, in get_gateway_health
+    response = requests.get(f"http://{self.host}:{self.port}/actuator/health")
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))</msg>
+<status status="FAIL" starttime="20230913 21:44:07.275" endtime="20230913 21:44:07.287"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:07.287" endtime="20230913 21:44:07.287"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:07.287" endtime="20230913 21:44:07.287"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:07.275" endtime="20230913 21:44:07.287"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:08.303" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:08.304" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:08.306" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:08.308" level="FAIL">ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))</msg>
+<msg timestamp="20230913 21:44:08.309" level="DEBUG">Traceback (most recent call last):
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connection.py", line 461, in getresponse
+    httplib_response = super().getresponse()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 1348, in getresponse
+    response.begin()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 285, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 470, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connection.py", line 461, in getresponse
+    httplib_response = super().getresponse()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 1348, in getresponse
+    response.begin()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 285, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/likai/Downloads/zeebe-test/libraries/zeebe/GatewayLibrary.py", line 30, in get_gateway_health
+    response = requests.get(f"http://{self.host}:{self.port}/actuator/health")
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))</msg>
+<status status="FAIL" starttime="20230913 21:44:08.304" endtime="20230913 21:44:08.309"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:08.309" endtime="20230913 21:44:08.309"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:08.309" endtime="20230913 21:44:08.309"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:08.303" endtime="20230913 21:44:08.309"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:09.311" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:09.311" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:09.316" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:09.318" level="FAIL">ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))</msg>
+<msg timestamp="20230913 21:44:09.318" level="DEBUG">Traceback (most recent call last):
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connection.py", line 461, in getresponse
+    httplib_response = super().getresponse()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 1348, in getresponse
+    response.begin()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 285, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 470, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connection.py", line 461, in getresponse
+    httplib_response = super().getresponse()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 1348, in getresponse
+    response.begin()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 285, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/likai/Downloads/zeebe-test/libraries/zeebe/GatewayLibrary.py", line 30, in get_gateway_health
+    response = requests.get(f"http://{self.host}:{self.port}/actuator/health")
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))</msg>
+<status status="FAIL" starttime="20230913 21:44:09.311" endtime="20230913 21:44:09.318"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:09.319" endtime="20230913 21:44:09.319"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:09.319" endtime="20230913 21:44:09.319"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:09.310" endtime="20230913 21:44:09.319"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:10.320" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:10.320" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:10.322" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:10.329" level="FAIL">ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))</msg>
+<msg timestamp="20230913 21:44:10.330" level="DEBUG">Traceback (most recent call last):
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connection.py", line 461, in getresponse
+    httplib_response = super().getresponse()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 1348, in getresponse
+    response.begin()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 285, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 470, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/urllib3/connection.py", line 461, in getresponse
+    httplib_response = super().getresponse()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 1348, in getresponse
+    response.begin()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/Users/likai/.pyenv/versions/3.8.12/lib/python3.8/http/client.py", line 285, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/likai/Downloads/zeebe-test/libraries/zeebe/GatewayLibrary.py", line 30, in get_gateway_health
+    response = requests.get(f"http://{self.host}:{self.port}/actuator/health")
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/likai/Downloads/zeebe-test/.venv/lib/python3.8/site-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))</msg>
+<status status="FAIL" starttime="20230913 21:44:10.320" endtime="20230913 21:44:10.330"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:10.330" endtime="20230913 21:44:10.330"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:10.330" endtime="20230913 21:44:10.330"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:10.320" endtime="20230913 21:44:10.330"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:11.331" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:11.332" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:11.337" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:11.514" level="DEBUG">http://localhost:9600 "GET /actuator/health HTTP/1.1" 503 None</msg>
+<msg timestamp="20230913 21:44:11.526" level="INFO">Zeebe gateway health: {'status': 'DOWN', 'components': {'diskSpace': {'status': 'UP', 'details': {'total': 62671097856, 'free': 54436036608, 'threshold': 10485760, 'path': '/usr/local/zeebe/.', 'exists': True}}, 'gatewayClusterAwareness': {'status': 'DOWN'}, 'gatewayPartitionLeaderAwareness': {'status': 'DOWN'}, 'gatewayStarted': {'status': 'UP'}, 'livenessGatewayClusterAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'ClusterAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessGatewayPartitionLeaderAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'PartitionLeaderAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessMemory': {'status': 'UP', 'details': {'threshold': 0.01}}, 'ping': {'status': 'UP'}}, 'groups': ['liveness', 'readiness', 'startup']}</msg>
+<msg timestamp="20230913 21:44:11.526" level="TRACE">Return: &lt;Response [503]&gt;</msg>
+<msg timestamp="20230913 21:44:11.526" level="INFO">${response} = &lt;Response [503]&gt;</msg>
+<status status="PASS" starttime="20230913 21:44:11.332" endtime="20230913 21:44:11.526"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:11.527" level="TRACE">Arguments: [ 503 | '200' ]</msg>
+<msg timestamp="20230913 21:44:11.527" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:11.528" level="FAIL">503 != 200</msg>
+<msg timestamp="20230913 21:44:11.528" level="DEBUG">Traceback (most recent call last):
+  None
+AssertionError: 503 != 200</msg>
+<status status="FAIL" starttime="20230913 21:44:11.526" endtime="20230913 21:44:11.528"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:11.528" endtime="20230913 21:44:11.528"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:11.331" endtime="20230913 21:44:11.528"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:12.531" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:12.532" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:12.535" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:12.543" level="DEBUG">http://localhost:9600 "GET /actuator/health HTTP/1.1" 503 None</msg>
+<msg timestamp="20230913 21:44:12.544" level="INFO">Zeebe gateway health: {'status': 'DOWN', 'components': {'diskSpace': {'status': 'UP', 'details': {'total': 62671097856, 'free': 53899001856, 'threshold': 10485760, 'path': '/usr/local/zeebe/.', 'exists': True}}, 'gatewayClusterAwareness': {'status': 'UP'}, 'gatewayPartitionLeaderAwareness': {'status': 'DOWN'}, 'gatewayStarted': {'status': 'UP'}, 'livenessGatewayClusterAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'ClusterAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessGatewayPartitionLeaderAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'PartitionLeaderAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessMemory': {'status': 'UP', 'details': {'threshold': 0.01}}, 'ping': {'status': 'UP'}}, 'groups': ['liveness', 'readiness', 'startup']}</msg>
+<msg timestamp="20230913 21:44:12.544" level="TRACE">Return: &lt;Response [503]&gt;</msg>
+<msg timestamp="20230913 21:44:12.545" level="INFO">${response} = &lt;Response [503]&gt;</msg>
+<status status="PASS" starttime="20230913 21:44:12.532" endtime="20230913 21:44:12.545"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:12.546" level="TRACE">Arguments: [ 503 | '200' ]</msg>
+<msg timestamp="20230913 21:44:12.546" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:12.546" level="FAIL">503 != 200</msg>
+<msg timestamp="20230913 21:44:12.546" level="DEBUG">Traceback (most recent call last):
+  None
+AssertionError: 503 != 200</msg>
+<status status="FAIL" starttime="20230913 21:44:12.545" endtime="20230913 21:44:12.546"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:12.546" endtime="20230913 21:44:12.546"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:12.531" endtime="20230913 21:44:12.546"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:13.550" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:13.551" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:13.554" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:13.570" level="DEBUG">http://localhost:9600 "GET /actuator/health HTTP/1.1" 503 None</msg>
+<msg timestamp="20230913 21:44:13.571" level="INFO">Zeebe gateway health: {'status': 'DOWN', 'components': {'diskSpace': {'status': 'UP', 'details': {'total': 62671097856, 'free': 53630504960, 'threshold': 10485760, 'path': '/usr/local/zeebe/.', 'exists': True}}, 'gatewayClusterAwareness': {'status': 'UP'}, 'gatewayPartitionLeaderAwareness': {'status': 'DOWN'}, 'gatewayStarted': {'status': 'UP'}, 'livenessGatewayClusterAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'ClusterAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessGatewayPartitionLeaderAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'PartitionLeaderAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessMemory': {'status': 'UP', 'details': {'threshold': 0.01}}, 'ping': {'status': 'UP'}}, 'groups': ['liveness', 'readiness', 'startup']}</msg>
+<msg timestamp="20230913 21:44:13.571" level="TRACE">Return: &lt;Response [503]&gt;</msg>
+<msg timestamp="20230913 21:44:13.571" level="INFO">${response} = &lt;Response [503]&gt;</msg>
+<status status="PASS" starttime="20230913 21:44:13.550" endtime="20230913 21:44:13.571"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:13.572" level="TRACE">Arguments: [ 503 | '200' ]</msg>
+<msg timestamp="20230913 21:44:13.572" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:13.572" level="FAIL">503 != 200</msg>
+<msg timestamp="20230913 21:44:13.572" level="DEBUG">Traceback (most recent call last):
+  None
+AssertionError: 503 != 200</msg>
+<status status="FAIL" starttime="20230913 21:44:13.571" endtime="20230913 21:44:13.572"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:13.572" endtime="20230913 21:44:13.572"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:13.548" endtime="20230913 21:44:13.573"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:14.575" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:14.576" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:14.580" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:14.606" level="DEBUG">http://localhost:9600 "GET /actuator/health HTTP/1.1" 503 None</msg>
+<msg timestamp="20230913 21:44:14.606" level="INFO">Zeebe gateway health: {'status': 'DOWN', 'components': {'diskSpace': {'status': 'UP', 'details': {'total': 62671097856, 'free': 53881536512, 'threshold': 10485760, 'path': '/usr/local/zeebe/.', 'exists': True}}, 'gatewayClusterAwareness': {'status': 'UP'}, 'gatewayPartitionLeaderAwareness': {'status': 'DOWN'}, 'gatewayStarted': {'status': 'UP'}, 'livenessGatewayClusterAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'ClusterAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessGatewayPartitionLeaderAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'PartitionLeaderAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessMemory': {'status': 'UP', 'details': {'threshold': 0.01}}, 'ping': {'status': 'UP'}}, 'groups': ['liveness', 'readiness', 'startup']}</msg>
+<msg timestamp="20230913 21:44:14.606" level="TRACE">Return: &lt;Response [503]&gt;</msg>
+<msg timestamp="20230913 21:44:14.607" level="INFO">${response} = &lt;Response [503]&gt;</msg>
+<status status="PASS" starttime="20230913 21:44:14.576" endtime="20230913 21:44:14.607"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:14.607" level="TRACE">Arguments: [ 503 | '200' ]</msg>
+<msg timestamp="20230913 21:44:14.607" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:14.607" level="FAIL">503 != 200</msg>
+<msg timestamp="20230913 21:44:14.608" level="DEBUG">Traceback (most recent call last):
+  None
+AssertionError: 503 != 200</msg>
+<status status="FAIL" starttime="20230913 21:44:14.607" endtime="20230913 21:44:14.608"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:14.608" endtime="20230913 21:44:14.608"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:14.575" endtime="20230913 21:44:14.608"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:15.612" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:15.613" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:15.617" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:15.635" level="DEBUG">http://localhost:9600 "GET /actuator/health HTTP/1.1" 503 None</msg>
+<msg timestamp="20230913 21:44:15.636" level="INFO">Zeebe gateway health: {'status': 'DOWN', 'components': {'diskSpace': {'status': 'UP', 'details': {'total': 62671097856, 'free': 53630480384, 'threshold': 10485760, 'path': '/usr/local/zeebe/.', 'exists': True}}, 'gatewayClusterAwareness': {'status': 'UP'}, 'gatewayPartitionLeaderAwareness': {'status': 'DOWN'}, 'gatewayStarted': {'status': 'UP'}, 'livenessGatewayClusterAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'ClusterAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessGatewayPartitionLeaderAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'PartitionLeaderAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessMemory': {'status': 'UP', 'details': {'threshold': 0.01}}, 'ping': {'status': 'UP'}}, 'groups': ['liveness', 'readiness', 'startup']}</msg>
+<msg timestamp="20230913 21:44:15.637" level="TRACE">Return: &lt;Response [503]&gt;</msg>
+<msg timestamp="20230913 21:44:15.637" level="INFO">${response} = &lt;Response [503]&gt;</msg>
+<status status="PASS" starttime="20230913 21:44:15.612" endtime="20230913 21:44:15.637"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:15.638" level="TRACE">Arguments: [ 503 | '200' ]</msg>
+<msg timestamp="20230913 21:44:15.638" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:15.638" level="FAIL">503 != 200</msg>
+<msg timestamp="20230913 21:44:15.638" level="DEBUG">Traceback (most recent call last):
+  None
+AssertionError: 503 != 200</msg>
+<status status="FAIL" starttime="20230913 21:44:15.637" endtime="20230913 21:44:15.638"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:15.638" endtime="20230913 21:44:15.638"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:15.611" endtime="20230913 21:44:15.638"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:16.642" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:16.643" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:16.645" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:16.654" level="DEBUG">http://localhost:9600 "GET /actuator/health HTTP/1.1" 503 None</msg>
+<msg timestamp="20230913 21:44:16.655" level="INFO">Zeebe gateway health: {'status': 'DOWN', 'components': {'diskSpace': {'status': 'UP', 'details': {'total': 62671097856, 'free': 53567180800, 'threshold': 10485760, 'path': '/usr/local/zeebe/.', 'exists': True}}, 'gatewayClusterAwareness': {'status': 'UP'}, 'gatewayPartitionLeaderAwareness': {'status': 'DOWN'}, 'gatewayStarted': {'status': 'UP'}, 'livenessGatewayClusterAwareness': {'status': 'UP', 'details': {'derivedFrom': 'ClusterAwarenessHealthIndicator', 'wasEverUp': True, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'UP'}}}, 'livenessGatewayPartitionLeaderAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'PartitionLeaderAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessMemory': {'status': 'UP', 'details': {'threshold': 0.01}}, 'ping': {'status': 'UP'}}, 'groups': ['liveness', 'readiness', 'startup']}</msg>
+<msg timestamp="20230913 21:44:16.656" level="TRACE">Return: &lt;Response [503]&gt;</msg>
+<msg timestamp="20230913 21:44:16.656" level="INFO">${response} = &lt;Response [503]&gt;</msg>
+<status status="PASS" starttime="20230913 21:44:16.642" endtime="20230913 21:44:16.656"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:16.656" level="TRACE">Arguments: [ 503 | '200' ]</msg>
+<msg timestamp="20230913 21:44:16.656" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:16.656" level="FAIL">503 != 200</msg>
+<msg timestamp="20230913 21:44:16.656" level="DEBUG">Traceback (most recent call last):
+  None
+AssertionError: 503 != 200</msg>
+<status status="FAIL" starttime="20230913 21:44:16.656" endtime="20230913 21:44:16.656"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:16.656" endtime="20230913 21:44:16.656"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:16.642" endtime="20230913 21:44:16.656"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:17.660" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:17.661" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:17.664" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:17.673" level="DEBUG">http://localhost:9600 "GET /actuator/health HTTP/1.1" 503 None</msg>
+<msg timestamp="20230913 21:44:17.674" level="INFO">Zeebe gateway health: {'status': 'DOWN', 'components': {'diskSpace': {'status': 'UP', 'details': {'total': 62671097856, 'free': 53567025152, 'threshold': 10485760, 'path': '/usr/local/zeebe/.', 'exists': True}}, 'gatewayClusterAwareness': {'status': 'UP'}, 'gatewayPartitionLeaderAwareness': {'status': 'UP'}, 'gatewayStarted': {'status': 'UP'}, 'livenessGatewayClusterAwareness': {'status': 'UP', 'details': {'derivedFrom': 'ClusterAwarenessHealthIndicator', 'wasEverUp': True, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'UP'}}}, 'livenessGatewayPartitionLeaderAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'PartitionLeaderAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessMemory': {'status': 'UP', 'details': {'threshold': 0.01}}, 'ping': {'status': 'UP'}}, 'groups': ['liveness', 'readiness', 'startup']}</msg>
+<msg timestamp="20230913 21:44:17.675" level="TRACE">Return: &lt;Response [503]&gt;</msg>
+<msg timestamp="20230913 21:44:17.675" level="INFO">${response} = &lt;Response [503]&gt;</msg>
+<status status="PASS" starttime="20230913 21:44:17.661" endtime="20230913 21:44:17.675"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:17.677" level="TRACE">Arguments: [ 503 | '200' ]</msg>
+<msg timestamp="20230913 21:44:17.677" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:17.677" level="FAIL">503 != 200</msg>
+<msg timestamp="20230913 21:44:17.677" level="DEBUG">Traceback (most recent call last):
+  None
+AssertionError: 503 != 200</msg>
+<status status="FAIL" starttime="20230913 21:44:17.676" endtime="20230913 21:44:17.677"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:17.677" endtime="20230913 21:44:17.677"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:17.659" endtime="20230913 21:44:17.677"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:18.679" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:18.679" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:18.682" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:18.690" level="DEBUG">http://localhost:9600 "GET /actuator/health HTTP/1.1" 503 None</msg>
+<msg timestamp="20230913 21:44:18.691" level="INFO">Zeebe gateway health: {'status': 'DOWN', 'components': {'diskSpace': {'status': 'UP', 'details': {'total': 62671097856, 'free': 53567025152, 'threshold': 10485760, 'path': '/usr/local/zeebe/.', 'exists': True}}, 'gatewayClusterAwareness': {'status': 'UP'}, 'gatewayPartitionLeaderAwareness': {'status': 'UP'}, 'gatewayStarted': {'status': 'UP'}, 'livenessGatewayClusterAwareness': {'status': 'UP', 'details': {'derivedFrom': 'ClusterAwarenessHealthIndicator', 'wasEverUp': True, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'UP'}}}, 'livenessGatewayPartitionLeaderAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'PartitionLeaderAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessMemory': {'status': 'UP', 'details': {'threshold': 0.01}}, 'ping': {'status': 'UP'}}, 'groups': ['liveness', 'readiness', 'startup']}</msg>
+<msg timestamp="20230913 21:44:18.691" level="TRACE">Return: &lt;Response [503]&gt;</msg>
+<msg timestamp="20230913 21:44:18.691" level="INFO">${response} = &lt;Response [503]&gt;</msg>
+<status status="PASS" starttime="20230913 21:44:18.679" endtime="20230913 21:44:18.691"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:18.692" level="TRACE">Arguments: [ 503 | '200' ]</msg>
+<msg timestamp="20230913 21:44:18.692" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:18.693" level="FAIL">503 != 200</msg>
+<msg timestamp="20230913 21:44:18.693" level="DEBUG">Traceback (most recent call last):
+  None
+AssertionError: 503 != 200</msg>
+<status status="FAIL" starttime="20230913 21:44:18.692" endtime="20230913 21:44:18.693"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:18.693" endtime="20230913 21:44:18.693"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:18.678" endtime="20230913 21:44:18.693"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:19.695" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:19.695" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:19.699" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:19.709" level="DEBUG">http://localhost:9600 "GET /actuator/health HTTP/1.1" 503 None</msg>
+<msg timestamp="20230913 21:44:19.709" level="INFO">Zeebe gateway health: {'status': 'DOWN', 'components': {'diskSpace': {'status': 'UP', 'details': {'total': 62671097856, 'free': 53567025152, 'threshold': 10485760, 'path': '/usr/local/zeebe/.', 'exists': True}}, 'gatewayClusterAwareness': {'status': 'UP'}, 'gatewayPartitionLeaderAwareness': {'status': 'UP'}, 'gatewayStarted': {'status': 'UP'}, 'livenessGatewayClusterAwareness': {'status': 'UP', 'details': {'derivedFrom': 'ClusterAwarenessHealthIndicator', 'wasEverUp': True, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'UP'}}}, 'livenessGatewayPartitionLeaderAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'PartitionLeaderAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessMemory': {'status': 'UP', 'details': {'threshold': 0.01}}, 'ping': {'status': 'UP'}}, 'groups': ['liveness', 'readiness', 'startup']}</msg>
+<msg timestamp="20230913 21:44:19.710" level="TRACE">Return: &lt;Response [503]&gt;</msg>
+<msg timestamp="20230913 21:44:19.710" level="INFO">${response} = &lt;Response [503]&gt;</msg>
+<status status="PASS" starttime="20230913 21:44:19.695" endtime="20230913 21:44:19.710"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:19.710" level="TRACE">Arguments: [ 503 | '200' ]</msg>
+<msg timestamp="20230913 21:44:19.710" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:19.710" level="FAIL">503 != 200</msg>
+<msg timestamp="20230913 21:44:19.711" level="DEBUG">Traceback (most recent call last):
+  None
+AssertionError: 503 != 200</msg>
+<status status="FAIL" starttime="20230913 21:44:19.710" endtime="20230913 21:44:19.711"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:19.711" endtime="20230913 21:44:19.711"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:19.694" endtime="20230913 21:44:19.711"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:20.714" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:20.715" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:20.719" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:20.730" level="DEBUG">http://localhost:9600 "GET /actuator/health HTTP/1.1" 503 None</msg>
+<msg timestamp="20230913 21:44:20.731" level="INFO">Zeebe gateway health: {'status': 'DOWN', 'components': {'diskSpace': {'status': 'UP', 'details': {'total': 62671097856, 'free': 53567025152, 'threshold': 10485760, 'path': '/usr/local/zeebe/.', 'exists': True}}, 'gatewayClusterAwareness': {'status': 'UP'}, 'gatewayPartitionLeaderAwareness': {'status': 'UP'}, 'gatewayStarted': {'status': 'UP'}, 'livenessGatewayClusterAwareness': {'status': 'UP', 'details': {'derivedFrom': 'ClusterAwarenessHealthIndicator', 'wasEverUp': True, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'UP'}}}, 'livenessGatewayPartitionLeaderAwareness': {'status': 'DOWN', 'details': {'derivedFrom': 'PartitionLeaderAwarenessHealthIndicator', 'wasEverUp': False, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'DOWN'}}}, 'livenessMemory': {'status': 'UP', 'details': {'threshold': 0.01}}, 'ping': {'status': 'UP'}}, 'groups': ['liveness', 'readiness', 'startup']}</msg>
+<msg timestamp="20230913 21:44:20.731" level="TRACE">Return: &lt;Response [503]&gt;</msg>
+<msg timestamp="20230913 21:44:20.731" level="INFO">${response} = &lt;Response [503]&gt;</msg>
+<status status="PASS" starttime="20230913 21:44:20.714" endtime="20230913 21:44:20.731"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:20.733" level="TRACE">Arguments: [ 503 | '200' ]</msg>
+<msg timestamp="20230913 21:44:20.733" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:20.733" level="FAIL">503 != 200</msg>
+<msg timestamp="20230913 21:44:20.734" level="DEBUG">Traceback (most recent call last):
+  None
+AssertionError: 503 != 200</msg>
+<status status="FAIL" starttime="20230913 21:44:20.732" endtime="20230913 21:44:20.734"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20230913 21:44:20.734" endtime="20230913 21:44:20.734"/>
+</kw>
+<status status="FAIL" starttime="20230913 21:44:20.713" endtime="20230913 21:44:20.734"/>
+</kw>
+<kw name="Check Gateway Status Is Healthy">
+<doc>This keyword checks if the Zeebe gateway is healthy.</doc>
+<msg timestamp="20230913 21:44:21.735" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Gateway Health" library="GatewayLibrary">
+<var>${response}</var>
+<doc>Get the health of the Zeebe gateway.
+https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/gateway-health-probes/</doc>
+<msg timestamp="20230913 21:44:21.735" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:21.738" level="DEBUG">Starting new HTTP connection (1): localhost:9600</msg>
+<msg timestamp="20230913 21:44:21.749" level="DEBUG">http://localhost:9600 "GET /actuator/health HTTP/1.1" 200 None</msg>
+<msg timestamp="20230913 21:44:21.750" level="INFO">Zeebe gateway health: {'status': 'UP', 'components': {'diskSpace': {'status': 'UP', 'details': {'total': 62671097856, 'free': 53567025152, 'threshold': 10485760, 'path': '/usr/local/zeebe/.', 'exists': True}}, 'gatewayClusterAwareness': {'status': 'UP'}, 'gatewayPartitionLeaderAwareness': {'status': 'UP'}, 'gatewayStarted': {'status': 'UP'}, 'livenessGatewayClusterAwareness': {'status': 'UP', 'details': {'derivedFrom': 'ClusterAwarenessHealthIndicator', 'wasEverUp': True, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'UP'}}}, 'livenessGatewayPartitionLeaderAwareness': {'status': 'UP', 'details': {'derivedFrom': 'PartitionLeaderAwarenessHealthIndicator', 'wasEverUp': True, 'maxDowntime': 'PT5M', 'lastSeenDelegateHealthStatus': {'status': 'UP'}}}, 'livenessMemory': {'status': 'UP', 'details': {'threshold': 0.01}}, 'ping': {'status': 'UP'}}, 'groups': ['liveness', 'readiness', 'startup']}</msg>
+<msg timestamp="20230913 21:44:21.750" level="TRACE">Return: &lt;Response [200]&gt;</msg>
+<msg timestamp="20230913 21:44:21.750" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230913 21:44:21.735" endtime="20230913 21:44:21.750"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:21.751" level="TRACE">Arguments: [ 200 | '200' ]</msg>
+<msg timestamp="20230913 21:44:21.751" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:21.751" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20230913 21:44:21.750" endtime="20230913 21:44:21.751"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>UP</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:21.752" level="TRACE">Arguments: [ 'UP' | 'UP' ]</msg>
+<msg timestamp="20230913 21:44:21.752" level="DEBUG">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:21.752" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20230913 21:44:21.751" endtime="20230913 21:44:21.752"/>
+</kw>
+<msg timestamp="20230913 21:44:21.752" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20230913 21:44:21.735" endtime="20230913 21:44:21.752"/>
+</kw>
+<msg timestamp="20230913 21:44:21.752" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20230913 21:44:07.274" endtime="20230913 21:44:21.752"/>
+</kw>
+<doc>Pools the Zeebe gateway until it is healthy.</doc>
+<status status="PASS" starttime="20230913 21:44:07.274" endtime="20230913 21:44:21.753"/>
+</test>
+<doc>This test suite contains test cases for Zeebe gateway Health
+check.</doc>
+<status status="PASS" starttime="20230913 21:44:07.075" endtime="20230913 21:44:21.753"/>
+</suite>
+<suite id="s1-s2" name="Test Zeebe Process" source="/Users/likai/Downloads/zeebe-test/tests/test_zeebe_process.robot">
+<test id="s1-s2-t1" name="Deploy an empty process and create a process instance" line="14">
+<kw name="GIVEN Deploy Resource" library="ZbctlLibrary">
+<var>${response}</var>
+<arg>${EMPTY_PROCESS}</arg>
+<doc>Deploy a resource.</doc>
+<msg timestamp="20230913 21:44:21.763" level="TRACE">Arguments: [ '/Users/likai/Downloads/zeebe-test/tests/../resources/data/empty_process.xml' ]</msg>
+<msg timestamp="20230913 21:44:22.583" level="INFO">zbctl deploy --insecure --address=localhost resource /Users/likai/Downloads/zeebe-test/tests/../resources/data/empty_process.xml: {
+  "key": "2251799813685250",
+  "deployments": [
+    {
+      "process": {
+        "bpmnProcessId": "empty-process",
+        "version": 1,
+        "processDefinitionKey": "2251799813685249",
+        "resourceName": "/Users/likai/Downloads/zeebe-test/tests/../resources/data/empty_process.xml"
+      }
+    }
+  ]
+}</msg>
+<msg timestamp="20230913 21:44:22.584" level="TRACE">Return: {'deployments': [{'process': {'bpmnProcessId': 'empty-process',
+                              'processDefinitionKey': '2251799813685249',
+                              'resourceName': '/Users/likai/Downloads/zeebe-test/tests/../resources/data/empty_process.xml',
+                              'version': 1}}],
+ 'key': '2251799813685250'}</msg>
+<msg timestamp="20230913 21:44:22.584" level="INFO">${response} = {'key': '2251799813685250', 'deployments': [{'process': {'bpmnProcessId': 'empty-process', 'version': 1, 'processDefinitionKey': '2251799813685249', 'resourceName': '/Users/likai/Downloads/zeebe-test/...</msg>
+<status status="PASS" starttime="20230913 21:44:21.763" endtime="20230913 21:44:22.584"/>
+</kw>
+<kw name="WHEN Create Process Instance" library="ZbctlLibrary">
+<var>${response}</var>
+<arg>${response['deployments'][0]['process']['bpmnProcessId']}</arg>
+<doc>Create a process instance.</doc>
+<msg timestamp="20230913 21:44:22.585" level="TRACE">Arguments: [ 'empty-process' ]</msg>
+<msg timestamp="20230913 21:44:22.744" level="INFO">zbctl create --insecure --address=localhost instance empty-process --withResult: {
+  "processDefinitionKey": "2251799813685249",
+  "bpmnProcessId": "empty-process",
+  "version": 1,
+  "processInstanceKey": "2251799813685251",
+  "variables": "{}"
+}</msg>
+<msg timestamp="20230913 21:44:22.744" level="TRACE">Return: {'bpmnProcessId': 'empty-process',
+ 'processDefinitionKey': '2251799813685249',
+ 'processInstanceKey': '2251799813685251',
+ 'variables': '{}',
+ 'version': 1}</msg>
+<msg timestamp="20230913 21:44:22.744" level="INFO">${response} = {'processDefinitionKey': '2251799813685249', 'bpmnProcessId': 'empty-process', 'version': 1, 'processInstanceKey': '2251799813685251', 'variables': '{}'}</msg>
+<status status="PASS" starttime="20230913 21:44:22.584" endtime="20230913 21:44:22.744"/>
+</kw>
+<kw name="THEN Should Be Equal As Strings" library="BuiltIn">
+<arg>${response['variables']}</arg>
+<arg>{}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:22.745" level="TRACE">Arguments: [ '{}' | '{}' ]</msg>
+<msg timestamp="20230913 21:44:22.745" level="DEBUG">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:22.745" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20230913 21:44:22.744" endtime="20230913 21:44:22.745"/>
+</kw>
+<doc>Checks an empty process can be deployed and a process
+instance can be created.</doc>
+<tag>process</tag>
+<tag>smoke</tag>
+<status status="PASS" starttime="20230913 21:44:21.762" endtime="20230913 21:44:22.745"/>
+</test>
+<test id="s1-s2-t2" name="Create a process instance with non-existing process" line="23">
+<kw name="GIVEN Create Process Instance" library="ZbctlLibrary">
+<var>${response}</var>
+<arg>non-existing-process</arg>
+<doc>Create a process instance.</doc>
+<msg timestamp="20230913 21:44:22.746" level="TRACE">Arguments: [ 'non-existing-process' ]</msg>
+<msg timestamp="20230913 21:44:22.862" level="INFO">zbctl create --insecure --address=localhost instance non-existing-process --withResult: Error: rpc error: code = NotFound desc = Command 'CREATE_WITH_AWAITING_RESULT' rejected with code 'NOT_FOUND': Expected to find process definition with process ID 'non-existing-process', but none found
+
+</msg>
+<msg timestamp="20230913 21:44:22.863" level="TRACE">Return: "Error: rpc error: code = NotFound desc = Command 'CREATE_WITH_AWAITING_RESULT' rejected with code 'NOT_FOUND': Expected to find process definition with process ID 'non-existing-process', but none found\n\n"</msg>
+<msg timestamp="20230913 21:44:22.863" level="INFO">${response} = Error: rpc error: code = NotFound desc = Command 'CREATE_WITH_AWAITING_RESULT' rejected with code 'NOT_FOUND': Expected to find process definition with process ID 'non-existing-process', but none foun...</msg>
+<status status="PASS" starttime="20230913 21:44:22.745" endtime="20230913 21:44:22.863"/>
+</kw>
+<kw name="THEN Should Contain" library="BuiltIn">
+<arg>${response}</arg>
+<arg>NOT_FOUND</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<msg timestamp="20230913 21:44:22.863" level="TRACE">Arguments: [ "Error: rpc error: code = NotFound desc = Command 'CREATE_WITH_AWAITING_RESULT' rejected with code 'NOT_FOUND': Expected to find process definition with process ID 'non-existing-process', but none found\n\n" | 'NOT_FOUND' ]</msg>
+<msg timestamp="20230913 21:44:22.863" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20230913 21:44:22.863" endtime="20230913 21:44:22.863"/>
+</kw>
+<doc>Checks a process instance cannot be created with a non-
+existing process.</doc>
+<tag>negative</tag>
+<tag>process</tag>
+<tag>smoke</tag>
+<status status="PASS" starttime="20230913 21:44:22.745" endtime="20230913 21:44:22.864"/>
+</test>
+<test id="s1-s2-t3" name="Deploy an advanced process and create a process instance" line="30">
+<kw name="GIVEN Deploy Resource" library="ZbctlLibrary">
+<var>${response_1}</var>
+<arg>${ADVANCED_PROCESS}</arg>
+<doc>Deploy a resource.</doc>
+<msg timestamp="20230913 21:44:22.864" level="TRACE">Arguments: [ '/Users/likai/Downloads/zeebe-test/tests/../resources/data/advanced_process.xml' ]</msg>
+<msg timestamp="20230913 21:44:23.133" level="INFO">zbctl deploy --insecure --address=localhost resource /Users/likai/Downloads/zeebe-test/tests/../resources/data/advanced_process.xml: {
+  "key": "2251799813685257",
+  "deployments": [
+    {
+      "process": {
+        "bpmnProcessId": "camunda-cloud-quick-start-advanced",
+        "version": 1,
+        "processDefinitionKey": "2251799813685256",
+        "resourceName": "/Users/likai/Downloads/zeebe-test/tests/../resources/data/advanced_process.xml"
+      }
+    }
+  ]
+}</msg>
+<msg timestamp="20230913 21:44:23.133" level="TRACE">Return: {'deployments': [{'process': {'bpmnProcessId': 'camunda-cloud-quick-start-advanced',
+                              'processDefinitionKey': '2251799813685256',
+                              'resourceName': '/Users/likai/Downloads/zeebe-test/tests/../resources/data/advanced_process.xml',
+                              'version': 1}}],
+ 'key': '2251799813685257'}</msg>
+<msg timestamp="20230913 21:44:23.133" level="INFO">${response_1} = {'key': '2251799813685257', 'deployments': [{'process': {'bpmnProcessId': 'camunda-cloud-quick-start-advanced', 'version': 1, 'processDefinitionKey': '2251799813685256', 'resourceName': '/Users/likai/...</msg>
+<status status="PASS" starttime="20230913 21:44:22.864" endtime="20230913 21:44:23.133"/>
+</kw>
+<kw name="WHEN Create Worker" library="ZbctlLibrary">
+<var>${response_2}</var>
+<arg>test-worker</arg>
+<arg>"echo {\\"result\\":\\"Pong\\"}"</arg>
+<doc>Create a worker.</doc>
+<msg timestamp="20230913 21:44:23.134" level="TRACE">Arguments: [ 'test-worker' | '"echo {\\"result\\":\\"Pong\\"}"' ]</msg>
+<msg timestamp="20230913 21:44:23.135" level="TRACE">Return: None</msg>
+<msg timestamp="20230913 21:44:23.136" level="INFO">${response_2} = None</msg>
+<status status="PASS" starttime="20230913 21:44:23.133" endtime="20230913 21:44:23.136"/>
+</kw>
+<kw name="AND Create Process Instance" library="ZbctlLibrary">
+<var>${response_2}</var>
+<arg>${response_1['deployments'][0]['process']['bpmnProcessId']}</arg>
+<doc>Create a process instance.</doc>
+<msg timestamp="20230913 21:44:23.136" level="TRACE">Arguments: [ 'camunda-cloud-quick-start-advanced' ]</msg>
+<msg timestamp="20230913 21:44:23.374" level="INFO">zbctl create --insecure --address=localhost instance camunda-cloud-quick-start-advanced --withResult: {
+  "processDefinitionKey": "2251799813685256",
+  "bpmnProcessId": "camunda-cloud-quick-start-advanced",
+  "version": 1,
+  "processInstanceKey": "2251799813685258",
+  "variables": "{\"result\":\"Pong\"}"
+}</msg>
+<msg timestamp="20230913 21:44:23.375" level="TRACE">Return: {'bpmnProcessId': 'camunda-cloud-quick-start-advanced',
+ 'processDefinitionKey': '2251799813685256',
+ 'processInstanceKey': '2251799813685258',
+ 'variables': '{"result":"Pong"}',
+ 'version': 1}</msg>
+<msg timestamp="20230913 21:44:23.375" level="INFO">${response_2} = {'processDefinitionKey': '2251799813685256', 'bpmnProcessId': 'camunda-cloud-quick-start-advanced', 'version': 1, 'processInstanceKey': '2251799813685258', 'variables': '{"result":"Pong"}'}</msg>
+<status status="PASS" starttime="20230913 21:44:23.136" endtime="20230913 21:44:23.376"/>
+</kw>
+<kw name="Then Should Be Equal As Strings" library="BuiltIn">
+<arg>${response_2['variables']}</arg>
+<arg>{"result":"Pong"}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230913 21:44:23.378" level="TRACE">Arguments: [ '{"result":"Pong"}' | '{"result":"Pong"}' ]</msg>
+<msg timestamp="20230913 21:44:23.378" level="DEBUG">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20230913 21:44:23.378" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20230913 21:44:23.376" endtime="20230913 21:44:23.378"/>
+</kw>
+<kw name="Terminate Workers" library="ZbctlLibrary" type="TEARDOWN">
+<doc>Terminate workers.</doc>
+<msg timestamp="20230913 21:44:23.378" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20230913 21:44:23.378" level="INFO">Terminated workers.</msg>
+<msg timestamp="20230913 21:44:23.379" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20230913 21:44:23.378" endtime="20230913 21:44:23.379"/>
+</kw>
+<doc>Checks an advanced process can be deployed and a process
+instance can be created, if a worker is available.</doc>
+<tag>process</tag>
+<status status="PASS" starttime="20230913 21:44:22.864" endtime="20230913 21:44:23.379"/>
+</test>
+<test id="s1-s2-t4" name="Deploy an advanced process and create a process instance without a worker" line="46">
+<kw name="GIVEN Deploy Resource" library="ZbctlLibrary">
+<var>${response}</var>
+<arg>${ADVANCED_PROCESS}</arg>
+<doc>Deploy a resource.</doc>
+<msg timestamp="20230913 21:44:23.379" level="TRACE">Arguments: [ '/Users/likai/Downloads/zeebe-test/tests/../resources/data/advanced_process.xml' ]</msg>
+<msg timestamp="20230913 21:44:23.506" level="INFO">zbctl deploy --insecure --address=localhost resource /Users/likai/Downloads/zeebe-test/tests/../resources/data/advanced_process.xml: {
+  "key": "2251799813685273",
+  "deployments": [
+    {
+      "process": {
+        "bpmnProcessId": "camunda-cloud-quick-start-advanced",
+        "version": 1,
+        "processDefinitionKey": "2251799813685256",
+        "resourceName": "/Users/likai/Downloads/zeebe-test/tests/../resources/data/advanced_process.xml"
+      }
+    }
+  ]
+}</msg>
+<msg timestamp="20230913 21:44:23.506" level="TRACE">Return: {'deployments': [{'process': {'bpmnProcessId': 'camunda-cloud-quick-start-advanced',
+                              'processDefinitionKey': '2251799813685256',
+                              'resourceName': '/Users/likai/Downloads/zeebe-test/tests/../resources/data/advanced_process.xml',
+                              'version': 1}}],
+ 'key': '2251799813685273'}</msg>
+<msg timestamp="20230913 21:44:23.506" level="INFO">${response} = {'key': '2251799813685273', 'deployments': [{'process': {'bpmnProcessId': 'camunda-cloud-quick-start-advanced', 'version': 1, 'processDefinitionKey': '2251799813685256', 'resourceName': '/Users/likai/...</msg>
+<status status="PASS" starttime="20230913 21:44:23.379" endtime="20230913 21:44:23.506"/>
+</kw>
+<kw name="WHEN Create Process Instance" library="ZbctlLibrary">
+<var>${response}</var>
+<arg>${response['deployments'][0]['process']['bpmnProcessId']}</arg>
+<doc>Create a process instance.</doc>
+<msg timestamp="20230913 21:44:23.507" level="TRACE">Arguments: [ 'camunda-cloud-quick-start-advanced' ]</msg>
+<msg timestamp="20230913 21:44:32.632" level="INFO">zbctl create --insecure --address=localhost instance camunda-cloud-quick-start-advanced --withResult: Error: rpc error: code = DeadlineExceeded desc = Time out between gateway and broker: Request ProtocolRequest{id=29, subject=command-api-2, sender=gateway:26502, payload=byte[]{length=174, hash=-996359849}} to 172.25.0.4:26501 timed out in PT8.999S
+
+</msg>
+<msg timestamp="20230913 21:44:32.633" level="TRACE">Return: 'Error: rpc error: code = DeadlineExceeded desc = Time out between gateway and broker: Request ProtocolRequest{id=29, subject=command-api-2, sender=gateway:26502, payload=byte[]{length=174, hash=-996359849}} to 172.25.0.4:26501 timed out in PT8.999S\n\n'</msg>
+<msg timestamp="20230913 21:44:32.634" level="INFO">${response} = Error: rpc error: code = DeadlineExceeded desc = Time out between gateway and broker: Request ProtocolRequest{id=29, subject=command-api-2, sender=gateway:26502, payload=byte[]{length=174, hash=-99635...</msg>
+<status status="PASS" starttime="20230913 21:44:23.506" endtime="20230913 21:44:32.634"/>
+</kw>
+<kw name="THEN Should Contain" library="BuiltIn">
+<arg>${response}</arg>
+<arg>DeadlineExceeded</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<msg timestamp="20230913 21:44:32.636" level="TRACE">Arguments: [ 'Error: rpc error: code = DeadlineExceeded desc = Time out between gateway and broker: Request ProtocolRequest{id=29, subject=command-api-2, sender=gateway:26502, payload=byte[]{length=174, hash=-996359849}} to 172.25.0.4:26501 timed out in PT8.999S\n\n' | 'DeadlineExceeded' ]</msg>
+<msg timestamp="20230913 21:44:32.636" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20230913 21:44:32.635" endtime="20230913 21:44:32.636"/>
+</kw>
+<doc>Checks an advanced process can be deployed and a process
+instance fails given no worker is available</doc>
+<tag>negative</tag>
+<tag>process</tag>
+<tag>slow</tag>
+<status status="PASS" starttime="20230913 21:44:23.379" endtime="20230913 21:44:32.636"/>
+</test>
+<doc>This test suite contains test cases for Zeebe process.</doc>
+<status status="PASS" starttime="20230913 21:44:21.754" endtime="20230913 21:44:32.637"/>
+</suite>
+<status status="PASS" starttime="20230913 21:44:07.053" endtime="20230913 21:44:32.638"/>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="2" fail="0" skip="0">negative</stat>
+<stat pass="4" fail="0" skip="0">process</stat>
+<stat pass="1" fail="0" skip="0">slow</stat>
+<stat pass="2" fail="0" skip="0">smoke</stat>
+</tag>
+<suite>
+<stat pass="5" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test Zeebe Gateway Health">Tests.Test Zeebe Gateway Health</stat>
+<stat pass="4" fail="0" skip="0" id="s1-s2" name="Test Zeebe Process">Tests.Test Zeebe Process</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
